@@ -22,7 +22,7 @@ class Board(object):
         #flow only reaches this point if none of the entries in that column is empty
         print ('Invalid play- column is full')
 
-
+'''
 board = Board(6, 7)
 board.play(1, 'x')
 board.play(1, 'x')
@@ -30,3 +30,4 @@ board.play(1,'o')
 board.play(2, 'o')
 board.play(3, 'x')
 print board.board
+'''
