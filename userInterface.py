@@ -11,8 +11,7 @@ print(myBoard)  # print Board
 
 user1Won = 0
 user2Won = 0
-stalemate = 0
-while (user1Won + user2Won + stalemate) == 0:
+while (user1Won + user2Won) == 0:
     # get user1's 'play'
     print("Player 1: it's your turn!")
     validPlay = False
@@ -34,7 +33,9 @@ while (user1Won + user2Won + stalemate) == 0:
     # check if there's a win by user1
     user1Won = compute_k(myBoard, 4, 'o')
     if user1Won > 0:
-        break;
+        break
+    if myBoard.stalemate():
+        break
 
     # get user2's play
     print("Player 2: it's your turn!")
@@ -57,10 +58,15 @@ while (user1Won + user2Won + stalemate) == 0:
     # check if there's a win by user2
     user2Won = compute_k(myBoard, 4, 'x')
     if user2Won > 0:
-        break;
+        break
+    if myBoard.stalemate():
+        break
 
 # the end! (Announce the winner)
 if user1Won > 0:
     print("Player 1 Won!!!")
-if user2Won > 0:
-    print("Player 2 Won!!!")
+else:
+    if user2Won > 0:
+        print("Player 2 Won!!!")
+    else:
+        print("It's a cat's game!")

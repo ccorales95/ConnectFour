@@ -31,6 +31,14 @@ class Board(object):
         # method to get the number of rows
         return self.rows
 
+    def stalemate(self):
+        stalemate = True
+        for rownum in range(self.rows):
+            for colnum in range(self.columns):
+                if self.board[rownum][colnum] == '_':
+                    stalemate = False
+        return stalemate
+
 '''
 board = Board(6, 7)
 board.play(1, 'x')
