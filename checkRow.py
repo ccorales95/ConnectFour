@@ -22,7 +22,7 @@ def compute_k(board, k, player):
             if board.board[i][j] == player:
                 player_count += 1
             else:
-                player_count += 1
+                player_count = 0
 
             if player_count == k:
                 k_count +=1
@@ -34,7 +34,7 @@ def compute_k(board, k, player):
             if board.board[i][j] == player:
                 player_count += 1
             else:
-                player_count += 1
+                player_count = 0
 
             if player_count == k:
                 k_count += 1
@@ -42,6 +42,19 @@ def compute_k(board, k, player):
 
     player_count = 0
     # checks diagonally
+    for i in range(rows):
+        for j in range(columns):
+            for m in range(4):
+                if board.board[i+m][j+m] == player:
+                    player_count += 1
+                else:
+                    player_count = 0
+
+                if player_count == k:
+                    k_count += 1
+
+    return k_count 
+
 
 
 
