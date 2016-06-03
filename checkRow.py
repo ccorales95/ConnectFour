@@ -58,7 +58,7 @@ def compute_k(board, k, player):
     player_count = 0
     # checks diagonally from right to left
     rows = rows[::-1]
-    colums = columns[::-1]
+    columns = columns[::-1]
     for i in range(rows-3):
         for j in range(columns-3):
             for m in range(4):
