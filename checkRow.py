@@ -43,8 +43,8 @@ def compute_k(board, k, player):
 
     player_count = 0
     # checks diagonally
-    for i in range(rows):
-        for j in range(columns):
+    for i in range(rows-3):
+        for j in range(columns-3):
             for m in range(4):
                 if board.board[i+m][j+m] == player:
                     player_count += 1
