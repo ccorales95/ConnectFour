@@ -42,7 +42,23 @@ def compute_k(board, k, player):
 
 
     player_count = 0
-    # checks diagonally
+    # checks diagonally from left to right
+    for i in range(rows-3):
+        for j in range(columns-3):
+            for m in range(4):
+                if board.board[i+m][j+m] == player:
+                    player_count += 1
+                else:
+                    player_count = 0
+
+                if player_count == k:
+                    k_count += 1
+
+
+    player_count = 0
+    # checks diagonally from right to left
+    rows = rows[::-1]
+    colums = columns[::-1]
     for i in range(rows-3):
         for j in range(columns-3):
             for m in range(4):
