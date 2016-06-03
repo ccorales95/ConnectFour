@@ -15,7 +15,8 @@ import Board
 def compute_k(board, k, player):
     player_count = 0
     k_count = 0
-
+    rows = board.getRow()
+    columns = board.getCol()
     #check horizontally
     for i in range(rows):
         for j in range(columns):
@@ -53,7 +54,7 @@ def compute_k(board, k, player):
                 if player_count == k:
                     k_count += 1
 
-    return k_count 
+    return k_count
 
 
 
