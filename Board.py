@@ -22,6 +22,14 @@ class Board(object):
         #flow only reaches this point if none of the entries in that column is empty
         print ('Invalid play- column is full')
 
+    def getCol(self):
+        # method to get the number of columns
+        return self.columns
+
+    def getRow(self):
+        # method to get the number of rows
+        return self.rows
+
 '''
 board = Board(6, 7)
 board.play(1, 'x')
