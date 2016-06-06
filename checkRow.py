@@ -57,11 +57,17 @@ def compute_k(board, k, player):
 
     player_count = 0
     # checks diagonally from right to left
+    '''
+    #note from Shawn: I don't understand this, but as far as I can tell rows and columns ought to be ints
+    #so this syntax doesn't make any sense
     rows = rows[::-1]
     columns = columns[::-1]
+    '''
+
     for i in range(rows-3):
         for j in range(columns-3):
-            for m in range(4):
+            #changed 4 to k, for generality
+            for m in range(k):
                 if board.board[i+m][j+m] == player:
                     player_count += 1
                 else:
@@ -71,17 +77,4 @@ def compute_k(board, k, player):
                     k_count += 1
 
     return k_count
-
-
-
-
-
-
-
-
-
-
-
-
-
 

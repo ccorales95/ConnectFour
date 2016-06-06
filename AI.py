@@ -1,5 +1,7 @@
 from Board import Board
 import copy
+from checkRow import compute_k
+import random
 
 def minmaxplay(board, depth, player):
     #this is a minmax algorithm
@@ -19,11 +21,11 @@ def minmaxplay(board, depth, player):
         bestscore = -1000
     bestplay = -1
     #this stores the best candidate for a good play
-    for x in range board.columns:
+    for x in range (board.columns):
         if depth == 0:
         #if depth is 0, we've reached the end
             if player == 'x':
-                for x in range board.columns:
+                for x in range (board.columns):
                     simulboard = copy.deepcopy(board)
                     #used to make a copy of the board for the purposes of further simulation
                     simulboard.play(x, 'x')
@@ -32,7 +34,7 @@ def minmaxplay(board, depth, player):
                         bestscore = potentialscore
                         bestplay = x
             if player == 'o':
-                for x in range board.columns:
+                for x in range (board.columns):
                     simulboard = copy.deepcopy(board)
                     #used to make a copy of the board for the purposes of further simulation
                     simulboard.play(x, 'o')
@@ -40,11 +42,13 @@ def minmaxplay(board, depth, player):
                     if potentialscore > bestscore:
                         bestscore = potentialscore
                         bestplay = x
+            if bestplay == -1:
+                bestplay = random.randint(0, 6)
             return (bestplay, bestscore)
 
         else:
             if player == 'x':
-                for x in range board.columns:
+                for x in range (board.columns):
                     simulboard = copy.deepcopy(board)
                     #used to make a copy of the board for the purposes of further simulation
                     simulboard.play(x, 'x')
@@ -54,7 +58,7 @@ def minmaxplay(board, depth, player):
                         bestscore = potentialscore
                         bestplay = x
             if player == 'o':
-                for x in range board.columns:
+                for x in range (board.columns):
                     simulboard = copy.deepcopy(board)
                     #used to make a copy of the board for the purposes of further simulation
                     simulboard.play(x, 'o')
@@ -63,12 +67,21 @@ def minmaxplay(board, depth, player):
                     if potentialscore > bestscore:
                         bestscore = potentialscore
                         bestplay = x
+            if bestplay == -1:
+                bestplay = random.randint(0, 6)
             return (bestplay, bestscore)
 
 
-
-
-
-
-
+def heuristic(board):
+    #if a winning position, then maxes out the score
+    if compute_k(board, 4, 'x') >= 1:
+        return -1000
+    if compute_k(board, 4, 'o') >= 1:
+        return 1000
+    #the heuristic just cgunts the number of 3 in a rows, because this is a good indicator for whether a
+    #position is strong in connect four
+    #it's a bit dumb, but all we need about the heurscore is its ordering.
+    #as it's defined, it will probably only go up to about 10 or so in a normal game, but that doesn't matter
+    heurscore = compute_k(board, 3, 'o') - compute_k(board, 3, 'x')
+    return heurscore
 

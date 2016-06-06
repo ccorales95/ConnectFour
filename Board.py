@@ -3,6 +3,7 @@ class Board(object):
         self.board = [['_' for x in range (columns)] for y in range (rows)]
         self.rows = rows
         self.columns = columns
+        self.tokens = 0
 
 
     def __str__(self):
@@ -18,6 +19,7 @@ class Board(object):
         for rownum in range (self.rows):
             if self.board[self.rows - 1 - rownum][column] == '_':
                 self.board[self.rows - 1 - rownum][column] = char
+                self.tokens += 1
                 return True
         #flow only reaches this point if none of the entries in that column is empty
         print ('Invalid play- column is full')
@@ -38,6 +40,12 @@ class Board(object):
                 if self.board[rownum][colnum] == '_':
                     stalemate = False
         return stalemate
+
+    def isFull(self):
+        if self.tokens == self.rows * self. columns:
+            return True
+        else:
+            return False
 
 '''
 board = Board(6, 7)
