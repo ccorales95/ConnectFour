@@ -1,7 +1,7 @@
 # imports
 from Board import Board
 from checkRow import compute_k
-
+#test
 myBoard = Board(6, 7)
 
 print("Connect Four! (2 Player)\n")
